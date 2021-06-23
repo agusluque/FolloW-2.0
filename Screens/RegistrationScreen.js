@@ -1,7 +1,7 @@
-import * as React from 'react'
+import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import { AuthContext } from '../Database/Firebase';
+import { AuthContext } from '../Database/AuthProvider';
 import { useContext } from 'react';
 
 const RegistrationScreen = (props) => {

@@ -2,8 +2,8 @@ import * as React from 'react'
 import {View, ScrollView, StyleSheet} from 'react-native';
 import { TextInput, Button , Text, Icon} from 'react-native-paper';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { AuthContext } from '../Database/Firebase';
-import { useContext } from 'react';
+import { AuthContext } from '../Database/AuthProvider';
+import { useContext, useState } from 'react';
 
 const LoginScreen = (props) => {
 

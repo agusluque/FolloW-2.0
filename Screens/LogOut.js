@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-paper';
-import { AuthContext } from '../Database/Firebase';
+import { AuthContext } from '../Database/AuthProvider';
 
 const LogOut = (props) => {
 
