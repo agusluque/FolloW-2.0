@@ -1,7 +1,6 @@
+import React, { createContext, useState } from 'react';
 import firebase from 'firebase';
-import * as React from 'react'
 import auth from '@react-native-firebase/auth';
-import { createContext, useState } from 'react';
 
 var firebaseConfig = {
     apiKey: "AIzaSyBYF4htYkN3gDZGS5kRe7Ri3x3fl3uKZ1U",
@@ -48,9 +47,9 @@ const AuthProvider = (props) => {
             },
         }}
         >
-        {props.children}
+        {children}
         </AuthContext.Provider>
     );
 }
 
-export default AuthProvider 
+export default AuthProvider; 

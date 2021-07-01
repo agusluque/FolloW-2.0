@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
-import firebase from 'firebase';
-
 import ChooseAccount from '../Screens/ChooseAccount';
-import LogOut from '../Screens/Logout';
-import { AuthContext } from './Firebase';
+import Mapa from '../Screens/Mapa';
+import { AuthContext } from './AuthProvider';
 
 const Routes = () => {
 
@@ -32,7 +30,7 @@ const Routes = () => {
     } 
     
     <NavigationContainer>
-       <LogOut />
+       <Mapa />
     </NavigationContainer>
 }
 

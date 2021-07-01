@@ -1,19 +1,40 @@
-import * as React from 'react'
-import {View, ScrollView, StyleSheet} from 'react-native';
-import { TextInput, Button , Text, Icon} from 'react-native-paper';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { AuthContext } from '../Database/AuthProvider';
-import { useContext, useState } from 'react';
+import React, {  useContext, useState } from 'react'
+import {View, StyleSheet} from 'react-native';
+import { TextInput, Button, Text } from 'react-native-paper';
+//import { Colors } from 'react-native/Libraries/NewAppScreen';
+import firebase, { AuthContext } from '../Database/AuthProvider';
 
 const LoginScreen = (props) => {
 
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
     const {login} = useContext(AuthContext);
 
+    const onSubmit= () => {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        
+        firebase.auth()
+        .getRedirectResult()
+        .then((result) => {
+        if (result.credential) {
+        /** @type {firebase.auth.OAuthCredential} */
+        var credential = result.credential;
+
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = credential.accessToken;
+        // ...
+        }
+        // The signed-in user info.
+        var user = result.user;
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+    }
+
     return (
-        <View>
+        <View> 
             <Button onPress={() => props.navigation.navigate('ChooseAccount')} style = {styles.icon} icon ="chevron-left">
             </Button>
             <TextInput style = {styles.input1}
@@ -37,8 +58,11 @@ const LoginScreen = (props) => {
             <Button style= {styles.btn1} onPress={() => login(email, password)}>
             <Text style= {styles.txt1}> Ok </Text> 
             </Button>
-            <Button style= {styles.btn2} onPress={() => props.navigation.navigate('RestorePassword')}>
+            <Button style= {styles.btn2} onPress={() =>props.navigation.navigate('RestorePassword')}>
             <Text style= {styles.txt2}> Forgot Password? </Text> 
+            </Button>
+            <Button onPress={() => onSubmit()}>
+                Log In with Google
             </Button>
         </View>
     );

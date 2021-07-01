@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+//import { StatusBar } from 'expo-status-bar';
 import * as React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,7 +11,7 @@ import RestorePassword from './Screens/RestorePassword'
 import RegistrationScreen from './Screens/RegistrationScreen'
 import WelcomeScreen from './Screens/WelcomeScreen'
 import ChooseAccount from './Screens/ChooseAccount'
-import LogOut from './Screens/LogOut'
+import Mapa from './Screens/Mapa'
 
 function MyStack() {
   return(
@@ -21,7 +21,7 @@ function MyStack() {
       <Stack.Screen name="RegistrationScreen" component = {RegistrationScreen} options={{title: "Registrarse en FolloW"}} />
       <Stack.Screen name="LoginScreen" component = {LoginScreen} options={{title: "LogIn en FolloW"}} />
       <Stack.Screen name="RestorePassword" component = {RestorePassword} options={{title: "Restablecer su contraseña"}} />
-      <Stack.Screen name="LogOut" component = {LogOut} options={{title: ""}} />
+      <Stack.Screen name="Mapa" component = {Mapa} options={{title: ""}} />
     </Stack.Navigator>
   )
 }

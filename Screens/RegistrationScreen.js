@@ -1,23 +1,22 @@
-import * as React from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { AuthContext } from '../Database/AuthProvider';
-import { useContext } from 'react';
 
 const RegistrationScreen = (props) => {
 
     function Confirmar () {
         if (password == confirmPassword){
-           register(email, password);
+           register(email, password)
         } else {
            alert("las contraseñas no son iguales");
         }
     }
 
-    const [email, setEmail] = React.useState('');
-    const [name, setName] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [confirmPassword, setConfirmPassword] = React.useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     const {register} = useContext(AuthContext);
 

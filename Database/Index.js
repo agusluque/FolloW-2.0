@@ -1,6 +1,6 @@
 import Routes from '../Routes';
-import * as React from 'react'
-import { AuthProvider } from './Firebase';
+import React from 'react'
+import { AuthProvider } from './AuthProvider';
 
 const Providers = () => {
     return (
