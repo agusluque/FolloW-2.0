@@ -9,7 +9,7 @@ const LoginScreen = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
-    const {login} = useContext(AuthContext);
+    //const {login} = useContext(AuthContext);
 
     const onSubmit= () => {
         var provider = new firebase.auth.GoogleAuthProvider();
@@ -55,15 +55,16 @@ const LoginScreen = (props) => {
             value={password}
             onChangeText={password => setPassword(password)}
             />
-            <Button style= {styles.btn1} onPress={() => login(email, password)}>
+            {/* <Button style= {styles.btn1} onPress={() => login(email, password)}> */}
+            <Button style= {styles.btn1} onPress={() => props.navigation.navigate('Mapa')}>
             <Text style= {styles.txt1}> Ok </Text> 
             </Button>
             <Button style= {styles.btn2} onPress={() =>props.navigation.navigate('RestorePassword')}>
             <Text style= {styles.txt2}> Forgot Password? </Text> 
             </Button>
-            <Button onPress={() => onSubmit()}>
+            {/* <Button onPress={() => onSubmit()}>
                 Log In with Google
-            </Button>
+            </Button> */}
         </View>
     );
 };

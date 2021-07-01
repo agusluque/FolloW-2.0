@@ -11,14 +11,14 @@ const RegistrationScreen = (props) => {
         } else {
            alert("las contraseñas no son iguales");
         }
-    }
+    } 
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const {register} = useContext(AuthContext);
+    //const {register} = useContext(AuthContext);
 
     return (
         <View>
@@ -50,7 +50,8 @@ const RegistrationScreen = (props) => {
             value={confirmPassword}
             onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
             />
-            <Button style = {styles.btn} onPress={() => Confirmar()}>
+            {/* <Button style = {styles.btn} onPress={() => Confirmar()}> */}
+            <Button style = {styles.btn} onPress={() => props.navigation.navigate('Mapa')}>
             <Text style = {styles.txt}> Ok </Text>  
             </Button>
         </View>
