@@ -1,8 +1,8 @@
-//import { StatusBar } from 'expo-status-bar';
-import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import auth from '@react-native-firebase/auth';
 
 const Stack = createStackNavigator()
 
@@ -30,6 +30,38 @@ export default function Screens() {
   return (
     <NavigationContainer>
       <MyStack/>
+    </NavigationContainer>
+  );
+}
+
+function App() {
+  
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; 
+  }, []);
+
+  if (initializing) return null;
+
+  if (!user) {
+    return (
+      <NavigationContainer>
+           <ChooseAccount />
+       </NavigationContainer>
+    );
+  }
+
+  return (
+    <NavigationContainer>
+       <Mapa />
     </NavigationContainer>
   );
 }

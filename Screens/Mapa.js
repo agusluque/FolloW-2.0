@@ -2,12 +2,9 @@ import React, { useContext } from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, View, Dimensions} from 'react-native';
 import { Button } from 'react-native-paper';
-import { AuthContext } from '../Database/AuthProvider';
 
 
 function Mapa(props) {
-
-  //const {user, logout} = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -21,7 +18,6 @@ function Mapa(props) {
       provider="google"
       >
       </MapView>
-      {/* <Button onPress={() => logout()}> */}
       <Button onPress={() => props.navigation.navigate('WelcomeScreen')}>
         Log Out
       </Button>

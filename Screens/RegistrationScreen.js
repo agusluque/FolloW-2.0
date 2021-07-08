@@ -1,24 +1,31 @@
 import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
-import { AuthContext } from '../Database/AuthProvider';
+import auth from '@react-native-firebase/auth';
 
 const RegistrationScreen = (props) => {
-
-    function Confirmar () {
-        if (password == confirmPassword){
-           register(email, password)
-        } else {
-           alert("las contraseñas no son iguales");
-        }
-    } 
 
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    //const {register} = useContext(AuthContext);
+    auth()
+  .createUserWithEmailAndPassword(email, password)
+  .then(() => {
+    console.log('User account created & signed in!');
+  })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+      console.log('That email address is already in use!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+      console.log('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
 
     return (
         <View>
@@ -50,8 +57,7 @@ const RegistrationScreen = (props) => {
             value={confirmPassword}
             onChangeText={confirmPassword => setConfirmPassword(confirmPassword)}
             />
-            {/* <Button style = {styles.btn} onPress={() => Confirmar()}> */}
-            <Button style = {styles.btn} onPress={() => props.navigation.navigate('Mapa')}>
+            <Button style = {styles.btn} onPress={() => auth()}>
             <Text style = {styles.txt}> Ok </Text>  
             </Button>
         </View>
