@@ -1,11 +1,40 @@
 import React, {  useContext, useState } from 'react'
 import {View, StyleSheet} from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBYF4htYkN3gDZGS5kRe7Ri3x3fl3uKZ1U",
+    authDomain: "follow-bbd.firebaseapp.com",
+    projectId: "follow-bbd",
+    storageBucket: "follow-bbd.appspot.com",
+    messagingSenderId: "904505628152",
+    appId: "1:904505628152:web:7aa1a790c74562bbfbf20d"
+};
+  
+firebase.initializeApp(firebaseConfig);
 
 const LoginScreen = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    auth()
+  .signInWithEmailAndPassword(email, password)
+  .then(() => {
+    console.log('User account created & signed in!');
+  })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+      console.log('That email address is already in use!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+      console.log('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
 
     return (
         <View> 
@@ -29,7 +58,7 @@ const LoginScreen = (props) => {
             value={password}
             onChangeText={password => setPassword(password)}
             />
-            <Button style= {styles.btn1} onPress={() => props.navigation.navigate('Mapa')}>
+            <Button style= {styles.btn1} onPress={() => auth()}>
             <Text style= {styles.txt1}> Ok </Text> 
             </Button>
             <Button style= {styles.btn2} onPress={() =>props.navigation.navigate('RestorePassword')}>
